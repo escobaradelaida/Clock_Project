@@ -12,6 +12,8 @@
 
   #include <iostream>
   #include <iomanip>
+  #include <string>
+  #include <ctime>
 
   class Clock
   {

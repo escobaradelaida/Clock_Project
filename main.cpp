@@ -10,7 +10,7 @@ int main()
     clock1.show();
 
     // set a clock object with a time
-    Clock clock2(23, 59, 55);
+    Clock clock2(23, 59, 55); // this would translate to 12 hour format
     clock2.show();
 
     // toggle the clock2 so that it changes from 12 to 24 time
@@ -18,8 +18,9 @@ int main()
     clock2.show();
 
     // increase the time by one second and display it
-    clock2.tick();
-    clock2.show();
+ 
+        clock2.tick();
+        clock2.show();
 
     return 0;
 }

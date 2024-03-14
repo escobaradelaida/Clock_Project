@@ -2,6 +2,7 @@
 #include "Clock.h"
 #include <iostream>
 #include <iomanip>
+#include <ctime> // included to make the time flow
 
 using namespace std;
 
@@ -17,6 +18,7 @@ Clock::Clock(int h, int m, int s)
 {
     if (h >= 0 && h < 24 && m >= 0 && m < 60 && s >= 0 && s < 60)
     {
+        // assigning these letters to the variables declared in header
         hours = h;
         minutes = m;
         seconds = s;
@@ -38,49 +40,42 @@ Clock::Clock(int h, int m, int s)
 
     void Clock::show()
     {
-        cout << "Time: ";
+        cout << " Time: ";
         if (format12Hours)
         {
             if (hours < 12)
                 std::cout << setw(2) << setfill('0') << hours << ":"
                      << setw(2) << setfill('0') << minutes << ":"
-                     << setw(2) << setfill('0') << seconds << " AM";
+                     << setw(2) << setfill('0') << seconds << " AM " << endl;
 
             else if (hours == 12)
                 std::cout << setw(2) << setfill('0') << hours << ":"
                      << setw(2) << setfill('0') << minutes << ":"
-                     << setw(2) << setfill('0') << seconds << " PM";
+                     << setw(2) << setfill('0') << seconds << " PM " << endl;
                 
             else
                 std::cout << setw(2) << setfill('0') << (hours - 12) << ":"
                      << setw(2) << setfill('0') << minutes << ":"
-                     << setw(2) << setfill('0') << seconds << " PM";
+                     << setw(2) << setfill('0') << seconds << " PM " << endl;
         }
         else
         {
             std::cout << setw(2) << setfill('0') << hours << ":"
                      << setw(2) << setfill('0') << minutes << ":"
-                     << setw(2) << setfill('0') << seconds;
+                     << setw(2) << setfill('0') << seconds << endl;
         }
         
     }
-    cout << "\n" << endl; // added newline to see if the code would run????
+    //cout << "\n" << endl; // added newline to see if the code would run????
 
 
 void Clock::tick()
 {
-    if (seconds >= 60)
-    {
-        seconds = 0;
-        minutes++;
-        if (minutes >= 60)
-        {
-            minutes = 0;
-            hours++;
-            if (hours >= 24)
-            {
-                hours = 0;
-            }
-        }
-    }
+    time_t now = time(nullptr);
+    tm *localTime = localtime(&now);
+    seconds = localTime->tm_sec;
+    minutes = localTime->tm_min;
+    hours = localTime->tm_hour;
+    // used "https://www.ibm.com/docs/en/i/7.1?topic=functions-ctime-convert-time-character-string" 
+    // to figure out the syntax
 }
