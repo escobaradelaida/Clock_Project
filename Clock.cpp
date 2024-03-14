@@ -25,7 +25,7 @@ Clock::Clock(int h, int m, int s)
     // if time is invalid, this is the else statement
     else 
     {
-        std::cout << "Resetting to 0:00:00 due to invalid time format." <<   endl;
+        cout << "Resetting to 0:00:00 due to invalid time format." <<   endl;
         hours = 0;
         minutes = 0;
         seconds = 0;
@@ -63,8 +63,8 @@ Clock::Clock(int h, int m, int s)
                      << setw(2) << setfill('0') << seconds;
         }
         
-    };
-    std::cout << endl;
+    }
+    cout << "\n" << endl; // added newline to see if the code would run????
 
 
 void Clock::tick()
@@ -83,4 +83,4 @@ void Clock::tick()
             }
         }
     }
-};
+}
